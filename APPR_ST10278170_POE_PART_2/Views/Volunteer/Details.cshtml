@@ -1,0 +1,27 @@
+﻿@model APPR_ST10278170_POE_PART_2.Models.Volunteer
+
+@{
+    ViewData["Title"] = "Volunteer Details";
+}
+
+<h2>Volunteer Details</h2>
+
+<div class="card mt-4">
+    <div class="card-header bg-info text-white">
+        @Model.FullName
+    </div>
+    <div class="card-body">
+        <p><strong>Contact Number:</strong> @Model.ContactNumber</p>
+        <p><strong>Email Address:</strong> @Model.Email</p>
+        <p><strong>Skills / Expertise:</strong> @Model.Skills</p>
+        <p><strong>Availability Date:</strong> @Model.AvailableFrom.ToString("yyyy-MM-dd")</p>
+        <p><strong>Preferred Location:</strong> @Model.PreferredLocation</p>
+        <p><strong>Assigned:</strong> @(Model.IsAssigned ? "Yes" : "No")</p>
+    </div>
+</div>
+
+<div class="mt-3">
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Edit</a>
+    <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger">Delete</a>
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</div>

@@ -1,0 +1,53 @@
+﻿@{
+    ViewData["Title"] = "Dashboard";
+}
+
+
+<section class="container mt-5">
+    <h1 class="text-success text-center mb-4">Welcome to the Gift of the Givers Website</h1>
+    <p class="lead text-center">This dashboard provides a real-time overview of disaster relief operations.</p>
+
+    <div class="row mt-4">
+        <div class="col-md-4">
+            <div class="card text-white bg-danger mb-3">
+                <div class="card-header">Disaster Reports</div>
+                <div class="card-body">
+                    <h5 class="card-title">Total: @ViewData["TotalReports"]</h5>
+                    <p class="card-text">Verified: @ViewData["VerifiedReports"]</p>
+                    <p class="card-text">Critical: @ViewData["CriticalReports"]</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card text-white bg-success mb-3">
+                <div class="card-header">Donations</div>
+                <div class="card-body">
+                    <h5 class="card-title">Total Donations: @ViewData["TotalDonations"]</h5>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card text-white bg-info mb-3">
+                <div class="card-header">Volunteers</div>
+                <div class="card-body">
+                    <h5 class="card-title">Total: @ViewData["TotalVolunteers"]</h5>
+                    <p class="card-text">Assigned: @ViewData["AssignedVolunteers"]</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-2">
+        <div class="col-md-6">
+            <div class="card text-white bg-warning mb-3">
+                <div class="card-header">Task Assignments</div>
+                <div class="card-body">
+                    <h5 class="card-title">Total Tasks: @ViewData["TotalTasks"]</h5>
+                    <p class="card-text">Completed: @ViewData["CompletedTasks"]</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

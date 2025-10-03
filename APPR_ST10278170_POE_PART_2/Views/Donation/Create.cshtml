@@ -1,0 +1,69 @@
+﻿@model APPR_ST10278170_POE_PART_2.Models.Donation
+
+@{
+    ViewData["Title"] = "Submit Donation";
+}
+
+<h2 class="text-success">Submit Donation</h2>
+
+<form asp-action="Create" method="post">
+
+    <div class="form-group">
+        <label asp-for="DonorName"></label>
+        <input asp-for="DonorName" class="form-control" />
+        <span asp-validation-for="DonorName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="DonationType"></label>
+        <select asp-for="DonationType" class="form-control">
+            <option value="">-- Select Type --</option>
+            <option>Money</option>
+            <option>Supplies</option>
+            <option>Services</option>
+        </select>
+        <span asp-validation-for="DonationType" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Amount"></label>
+        <input asp-for="Amount" type="number" step="0.01" class="form-control" />
+        <span asp-validation-for="Amount" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ResourceType"></label>
+        <input asp-for="ResourceType" class="form-control" />
+        <span asp-validation-for="ResourceType" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Quantity"></label>
+        <input asp-for="Quantity" type="number" class="form-control" />
+        <span asp-validation-for="Quantity" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="TargetLocation"></label>
+        <input asp-for="TargetLocation" class="form-control" />
+        <span asp-validation-for="TargetLocation" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Notes"></label>
+        <textarea asp-for="Notes" class="form-control"></textarea>
+        <span asp-validation-for="Notes" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="DateDonated"></label>
+        <input asp-for="DateDonated" type="date" class="form-control" />
+        <span asp-validation-for="DateDonated" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-success mt-3">Submit Donation</button>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

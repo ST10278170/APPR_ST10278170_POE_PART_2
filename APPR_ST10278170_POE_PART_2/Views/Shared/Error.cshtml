@@ -1,0 +1,28 @@
+﻿@model APPR_ST10278170_POE_PART_2.Models.ErrorViewModel
+
+@{
+    ViewData["Title"] = "Error";
+}
+
+<h2 class="text-danger">An unexpected error occurred</h2>
+
+<div class="card border-danger mb-3">
+    <div class="card-body">
+        <p><strong>Error Message:</strong> @Model.ErrorMessage</p>
+
+        @if (!string.IsNullOrEmpty(Model.StackTrace))
+        {
+            <p><strong>Stack Trace:</strong></p>
+            <pre class="bg-light p-2">@Model.StackTrace</pre>
+        }
+
+        <p><strong>Timestamp:</strong> @Model.Timestamp.ToString("f")</p>
+
+        @if (Model.ShowRequestId)
+        {
+            <p><strong>Request ID:</strong> @Model.RequestId</p>
+        }
+
+        <a class="btn btn-secondary" href="/">Return to Home</a>
+    </div>
+</div>

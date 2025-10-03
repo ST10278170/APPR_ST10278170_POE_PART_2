@@ -1,0 +1,29 @@
+﻿@model APPR_ST10278170_POE_PART_2.Models.DisasterReport
+
+@{
+    ViewData["Title"] = "Delete Report";
+}
+
+<h2 class="text-danger">Delete Report</h2>
+
+<div class="alert alert-warning">
+    Are you sure you want to delete this report?
+</div>
+
+<div class="mt-3">
+    <p><strong>Disaster Type:</strong> @Model.DisasterType</p>
+    <p><strong>Location:</strong> @Model.Location</p>
+    <p><strong>Description:</strong> <em>@Model.Description</em></p>
+    <p><strong>Date Reported:</strong> @Model.DateReported.ToString("yyyy-MM-dd")</p>
+    <p><strong>Severity:</strong> @Model.Severity</p>
+    <p><strong>Status:</strong> @Model.Status</p>
+    <p><strong>Verified:</strong> @(Model.IsVerified ? "Yes" : "No")</p>
+    <p><strong>Reported By:</strong> @Model.ReporterName</p>
+    <p><strong>Relief Required:</strong> @Model.ReliefRequired</p>
+</div>
+
+<form asp-action="DeleteConfirmed" method="post" class="mt-4">
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>

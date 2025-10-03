@@ -1,0 +1,28 @@
+﻿@model APPR_ST10278170_POE_PART_2.Models.DisasterReport
+
+@{
+    ViewData["Title"] = "Disaster Report Details";
+}
+
+<h2>Disaster Report Details</h2>
+
+<div class="card mt-4">
+    <div class="card-header bg-primary text-white">
+        Report from @Model.Location on @Model.DateReported.ToString("yyyy-MM-dd")
+    </div>
+    <div class="card-body">
+        <p><strong>Disaster Type:</strong> @Model.DisasterType</p>
+        <p><strong>Description:</strong> @Model.Description</p>
+        <p><strong>Severity:</strong> @Model.Severity</p>
+        <p><strong>Relief Required:</strong> @Model.ReliefRequired</p>
+        <p><strong>Reported By:</strong> @Model.ReporterName</p>
+        <p><strong>Status:</strong> @Model.Status</p>
+        <p><strong>Verified:</strong> @(Model.IsVerified ? "Yes" : "No")</p>
+    </div>
+</div>
+
+<div class="mt-3">
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Edit</a>
+    <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger">Delete</a>
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</div>

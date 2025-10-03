@@ -1,0 +1,45 @@
+﻿@model IEnumerable<APPR_ST10278170_POE_PART_2.Models.ReliefTask>
+
+@{
+    ViewData["Title"] = "Relief Tasks";
+}
+
+<h2 class="text-primary">Relief Tasks</h2>
+
+<a class="btn btn-success mb-3" asp-action="Create">Create New Task</a>
+
+<table class="table table-bordered table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th>Title</th>
+            <th>Location</th>
+            <th>Start</th>
+            <th>End</th>
+            <th>Status</th>
+            <th>Priority</th>
+            <th>Disaster Report ID</th>
+            <th>Volunteer ID</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var task in Model)
+        {
+            <tr>
+                <td>@task.Title</td>
+                <td>@task.Location</td>
+                <td>@task.StartDate.ToShortDateString()</td>
+                <td>@task.EndDate.ToShortDateString()</td>
+                <td>@task.Status</td>
+                <td>@task.Priority</td>
+                <td>@task.DisasterReportId</td>
+                <td>@task.VolunteerId</td>
+                <td>
+                    <a class="btn btn-info btn-sm" asp-action="Details" asp-route-id="@task.Id">Details</a>
+                    <a class="btn btn-warning btn-sm" asp-action="Edit" asp-route-id="@task.Id">Edit</a>
+                    <a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@task.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

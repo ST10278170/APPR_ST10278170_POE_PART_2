@@ -1,0 +1,68 @@
+﻿@model APPR_ST10278170_POE_PART_2.Models.ReliefTask
+
+@{
+    ViewData["Title"] = "Create Relief Task";
+}
+
+<h2 class="text-success">Create Relief Task</h2>
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label asp-for="Title"></label>
+        <input asp-for="Title" class="form-control" />
+        <span asp-validation-for="Title" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Description"></label>
+        <textarea asp-for="Description" class="form-control"></textarea>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="DisasterReportId"></label>
+        <input asp-for="DisasterReportId" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="VolunteerId"></label>
+        <input asp-for="VolunteerId" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Location"></label>
+        <input asp-for="Location" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="StartDate"></label>
+        <input asp-for="StartDate" type="date" class="form-control" />
+        <span asp-validation-for="StartDate" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="EndDate"></label>
+        <input asp-for="EndDate" type="date" class="form-control" />
+        <span asp-validation-for="EndDate" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Status"></label>
+        <select asp-for="Status" class="form-control">
+            <option>Planned</option>
+            <option>Active</option>
+            <option>Completed</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Priority"></label>
+        <select asp-for="Priority" class="form-control">
+            <option>Low</option>
+            <option>Medium</option>
+            <option>High</option>
+            <option>Critical</option>
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-3">Create Task</button>
+</form>

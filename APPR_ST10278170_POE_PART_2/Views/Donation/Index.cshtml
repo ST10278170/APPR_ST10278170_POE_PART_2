@@ -1,0 +1,37 @@
+﻿@model IEnumerable<APPR_ST10278170_POE_PART_2.Models.Donation>
+
+@{
+    ViewData["Title"] = "Donations Received";
+}
+
+<h2>Donations Received</h2>
+
+<table class="table table-bordered table-striped mt-3">
+    <thead class="table-dark">
+        <tr>
+            <th>Donor Name</th>
+            <th>Donation Type</th>
+            <th>Amount</th>
+            <th>Resource Type</th>
+            <th>Quantity</th>
+            <th>Target Location</th>
+            <th>Date Donated</th>
+            <th>Notes</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var donation in Model)
+        {
+            <tr>
+                <td>@donation.DonorName</td>
+                <td>@donation.DonationType</td>
+                <td>@(donation.Amount.HasValue? donation.Amount.Value.ToString("F2") : "-")</td>
+                <td>@donation.ResourceType</td>
+                <td>@(donation.Quantity.HasValue? donation.Quantity.Value.ToString() : "-")</td>
+                <td>@donation.TargetLocation</td>
+                <td>@donation.DateDonated.ToString("yyyy-MM-dd")</td>
+                <td>@donation.Notes</td>
+            </tr>
+        }
+    </tbody>
+</table>

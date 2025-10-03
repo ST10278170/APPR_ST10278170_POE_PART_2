@@ -1,0 +1,41 @@
+﻿@model IEnumerable<APPR_ST10278170_POE_PART_2.Models.Volunteer>
+
+@{
+    ViewData["Title"] = "Registered Volunteers";
+}
+
+<h2>Registered Volunteers</h2>
+
+<table class="table table-bordered table-striped mt-3">
+    <thead class="table-dark">
+        <tr>
+            <th>Full Name</th>
+            <th>Contact Number</th>
+            <th>Email</th>
+            <th>Skills</th>
+            <th>Available From</th>
+            <th>Preferred Location</th>
+            <th>Assigned</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var volunteer in Model)
+        {
+            <tr>
+                <td>@volunteer.FullName</td>
+                <td>@volunteer.ContactNumber</td>
+                <td>@volunteer.Email</td>
+                <td>@volunteer.Skills</td>
+                <td>@volunteer.AvailableFrom.ToString("yyyy-MM-dd")</td>
+                <td>@volunteer.PreferredLocation</td>
+                <td>@(volunteer.IsAssigned ? "Yes" : "No")</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@volunteer.Id" class="btn btn-info btn-sm">Details</a>
+                    <a asp-action="Edit" asp-route-id="@volunteer.Id" class="btn btn-warning btn-sm">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@volunteer.Id" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
