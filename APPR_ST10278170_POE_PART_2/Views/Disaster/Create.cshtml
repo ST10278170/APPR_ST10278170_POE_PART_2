@@ -1,0 +1,55 @@
+﻿@model APPR_ST10278170_POE_PART_2.Models.DisasterReport
+
+<h2>Submit Disaster Report</h2>
+
+<form asp-action="Create" method="post">
+    @Html.AntiForgeryToken()
+
+    <div>
+        <label asp-for="Location"></label>
+        <input asp-for="Location" class="form-control" />
+    </div>
+
+    <div>
+        <label asp-for="DisasterType"></label>
+        <input asp-for="DisasterType" class="form-control" />
+    </div>
+
+    <div>
+        <label asp-for="Description"></label>
+        <textarea asp-for="Description" class="form-control"></textarea>
+    </div>
+
+    <div>
+        <label asp-for="DateReported"></label>
+        <input asp-for="DateReported" type="date" class="form-control" />
+    </div>
+
+    <div>
+        <label asp-for="Severity"></label>
+        <input asp-for="Severity" class="form-control" />
+    </div>
+
+    <div>
+        <label asp-for="ReliefRequired"></label>
+        <input asp-for="ReliefRequired" class="form-control" />
+    </div>
+
+    <!-- ✅ fixed names -->
+    <div>
+        <label asp-for="ReporterName"></label>
+        <input asp-for="ReporterName" class="form-control" />
+    </div>
+
+    <div>
+        <label asp-for="Status"></label>
+        <input asp-for="Status" class="form-control" />
+    </div>
+
+    <div>
+        <label asp-for="IsVerified"></label>
+        <input asp-for="IsVerified" type="checkbox" class="form-check-input" />
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-2">Submit</button>
+</form>

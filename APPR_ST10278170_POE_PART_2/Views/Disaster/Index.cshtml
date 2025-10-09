@@ -1,0 +1,104 @@
+﻿@model IEnumerable<APPR_ST10278170_POE_PART_2.Models.DisasterReport>
+
+@{
+    ViewData["Title"] = "Disaster Reports";
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2 class="text-primary mb-0">Disaster Reports</h2>
+        <a asp-action="Create" class="btn btn-success">
+            <i class="bi bi-plus-circle"></i> Create New Report
+        </a>
+    </div>
+
+    <!-- 🔍 Search / Filter Bar -->
+    <form asp-action="Index" method="get" class="mb-4">
+        <div class="input-group">
+            <input type="text" name="searchString" class="form-control" placeholder="Search by location or disaster type..." />
+            <button type="submit" class="btn btn-outline-primary">Search</button>
+        </div>
+    </form>
+
+    <!-- 🧩 Reports Table -->
+    <div class="card shadow-sm">
+        <div class="card-header bg-dark text-white">
+            <h5 class="mb-0">Submitted Reports</h5>
+        </div>
+
+        <div class="card-body p-0">
+            <table class="table table-hover mb-0">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Location</th>
+                        <th>Disaster Type</th>
+                        <th>Description</th>
+                        <th>Date Reported</th>
+                        <th>Severity</th>
+                        <th>Relief Required</th>
+                        <th>Reported By</th>
+                        <th>Status</th>
+                        <th>Verified</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null && Model.Any())
+                    {
+                        foreach (var report in Model)
+                        {
+                            <tr>
+                                <td>@report.Location</td>
+                                <td>@report.DisasterType</td>
+                                <td>@report.Description</td>
+                                <td>@report.DateReported.ToString("yyyy-MM-dd")</td>
+                                <td>@report.Severity</td>
+                                <td>@report.ReliefRequired</td>
+                                <td>@report.ReporterName</td>
+                                <td>
+                                    <span class="badge
+                                                @(report.Status == "Resolved" ? "bg-success" :
+                                                                                    report.Status == "In Progress" ? "bg-warning text-dark" : "bg-secondary")">
+                                @report.Status
+                            </span>
+                        </td>
+                        <td>
+                            @if (report.IsVerified)
+                                    {
+                                        <span class="badge bg-success">Yes</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-danger">No</span>
+                                    }
+                                </td>
+                                <td>
+                                    <a asp-action="Details" asp-route-id="@report.Id" class="btn btn-sm btn-info text-white me-1">
+                                        <i class="bi bi-eye"></i> View
+                                    </a>
+                                    <a asp-action="Edit" asp-route-id="@report.Id" class="btn btn-sm btn-warning me-1">
+                                        <i class="bi bi-pencil-square"></i> Edit
+                                    </a>
+                                    <a asp-action="Delete" asp-route-id="@report.Id" class="btn btn-sm btn-danger">
+                                        <i class="bi bi-trash"></i> Delete
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="10" class="text-center text-muted py-3">
+                                No disaster reports have been submitted yet.
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Optional Bootstrap Icons -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">

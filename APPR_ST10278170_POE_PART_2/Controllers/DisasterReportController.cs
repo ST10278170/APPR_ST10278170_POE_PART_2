@@ -48,8 +48,8 @@ namespace APPR_ST10278170_POE_PART_2.Controllers
             catch
             {
                 ModelState.AddModelError("", "An error occurred while creating the disaster report.");
-            return View(report);
-        }
+                return View(report);
+            }
         }
 
         // 🔍 GET: /DisasterReport/Details/{id}
@@ -89,19 +89,19 @@ namespace APPR_ST10278170_POE_PART_2.Controllers
             if (!ModelState.IsValid)
                 return View(report);
 
-                try
-                {
-                    _context.Update(report);
-                    await _context.SaveChangesAsync();
-                    return RedirectToAction(nameof(Index));
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!_context.DisasterReports.Any(e => e.Id == id))
-                        return NotFound();
+            try
+            {
+                _context.Update(report);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!_context.DisasterReports.Any(e => e.Id == id))
+                    return NotFound();
 
-                    throw;
-                }
+                throw;
+            }
         }
 
         // 🗑️ GET: /DisasterReport/Delete/{id}
