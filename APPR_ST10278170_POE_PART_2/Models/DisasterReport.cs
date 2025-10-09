@@ -1,38 +1,45 @@
-﻿using System;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace APPR_ST10278170_POE_PART_2.Models
 {
     public class DisasterReport
     {
+        [Key]
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "Location is required.")]
-        public required string Location { get; set; }
+        [Required(ErrorMessage = "Location is required")]
+        [StringLength(100)]
+        public string Location { get; set; } = string.Empty;
 
-        [Required(ErrorMessage = "Disaster type is required.")]
-        public required string DisasterType { get; set; }
+        [Required(ErrorMessage = "Disaster Type is required")]
+        [StringLength(50)]
+        public string DisasterType { get; set; } = string.Empty;
 
-        [Display(Name = "Description of Incident")]
-        [Required(ErrorMessage = "Description is required.")]
-        public required string Description { get; set; }
+        [StringLength(500)]
+        public string Description { get; set; } = string.Empty;
 
-        [Required(ErrorMessage = "Date reported is required.")]
         [DataType(DataType.Date)]
-        public DateTime DateReported { get; set; }
+        [Display(Name = "Date Reported")]
+        public DateTime DateReported { get; set; } = DateTime.Now;
 
-        [Required(ErrorMessage = "Severity level is required.")]
-        public required string Severity { get; set; } // Low, Medium, High, Critical
-
-        [Display(Name = "Reported By")]
-        public string? ReporterName { get; set; }
+        [Required]
+        [StringLength(50)]
+        public string Severity { get; set; } = "Moderate";
 
         [Display(Name = "Relief Required")]
-        public string? ReliefRequired { get; set; } // Medical, Shelter, Food, etc.
+        [StringLength(200)]
+        public string ReliefRequired { get; set; } = string.Empty;
 
-        public string? Status { get; set; } // Pending, In Progress, Resolved
+        [Display(Name = "Reporter Name")]
+        [StringLength(100)]
+        public string ReporterName { get; set; } = string.Empty; // ✅ matches controller
+
+        [Required]
+        [StringLength(30)]
+        public string Status { get; set; } = "Pending";
 
         [Display(Name = "Verified")]
-        public bool IsVerified { get; set; } = false;
+        public bool IsVerified { get; set; } = false; // ✅ matches controller
     }
 }

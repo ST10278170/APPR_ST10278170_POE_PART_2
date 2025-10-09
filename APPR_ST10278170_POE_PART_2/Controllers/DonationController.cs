@@ -27,7 +27,7 @@ namespace APPR_ST10278170_POE_PART_2.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(Donation donation)
+        public IActionResult Create(DonationReport donation)
         {
             if (ModelState.IsValid)
             {
@@ -54,7 +54,7 @@ namespace APPR_ST10278170_POE_PART_2.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(int id, Donation donation)
+        public IActionResult Edit(int id, DonationReport donation)
         {
             if (id != donation.Id) return NotFound();
             if (ModelState.IsValid)

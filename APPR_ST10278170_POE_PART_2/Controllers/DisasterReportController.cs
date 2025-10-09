@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using APPR_ST10278170_POE_PART_2.Data;
 using APPR_ST10278170_POE_PART_2.Models;
-using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
+using System.Linq;
 
 namespace APPR_ST10278170_POE_PART_2.Controllers
 {
@@ -14,58 +16,79 @@ namespace APPR_ST10278170_POE_PART_2.Controllers
             _context = context;
         }
 
-        // 🔍 List all reports
+        // 🔍 GET: /DisasterReport
         public async Task<IActionResult> Index()
         {
             var reports = await _context.DisasterReports.ToListAsync();
             return View(reports);
         }
 
-        // 📝 Show create form
+        // 📝 GET: /DisasterReport/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // ✅ Handle form submission
+        // ✅ POST: /DisasterReport/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(DisasterReport report)
+        public async Task<IActionResult> Create([Bind("Id,DisasterType,Location,DateReported,Description,ReporterName,IsVerified")] DisasterReport report)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                _context.Add(report);
+                return View(report);
+            }
+
+            try
+            {
+                _context.DisasterReports.Add(report);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            catch
+            {
+                ModelState.AddModelError("", "An error occurred while creating the disaster report.");
             return View(report);
         }
+        }
 
-        // 🔍 View details
-        public async Task<IActionResult> Details(int id)
+        // 🔍 GET: /DisasterReport/Details/{id}
+        public async Task<IActionResult> Details(int? id)
         {
-            var report = await _context.DisasterReports.FindAsync(id);
-            if (report == null) return NotFound();
+            if (id == null)
+                return NotFound();
+
+            var report = await _context.DisasterReports.FirstOrDefaultAsync(m => m.Id == id);
+            if (report == null)
+                return NotFound();
+
             return View(report);
         }
 
-        // ✏️ Show edit form
-        public async Task<IActionResult> Edit(int id)
+        // ✏️ GET: /DisasterReport/Edit/{id}
+        public async Task<IActionResult> Edit(int? id)
         {
+            if (id == null)
+                return NotFound();
+
             var report = await _context.DisasterReports.FindAsync(id);
-            if (report == null) return NotFound();
+            if (report == null)
+                return NotFound();
+
             return View(report);
         }
 
-        // ✅ Handle edit submission
+        // ✅ POST: /DisasterReport/Edit/{id}
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, DisasterReport report)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,DisasterType,Location,DateReported,Description,ReporterName,IsVerified")] DisasterReport report)
         {
-            if (id != report.Id) return NotFound();
+            if (id != report.Id)
+                return NotFound();
 
-            if (ModelState.IsValid)
-            {
+            if (!ModelState.IsValid)
+                return View(report);
+
                 try
                 {
                     _context.Update(report);
@@ -76,21 +99,26 @@ namespace APPR_ST10278170_POE_PART_2.Controllers
                 {
                     if (!_context.DisasterReports.Any(e => e.Id == id))
                         return NotFound();
+
                     throw;
                 }
-            }
-            return View(report);
         }
 
-        // 🗑️ Show delete confirmation
-        public async Task<IActionResult> Delete(int id)
+        // 🗑️ GET: /DisasterReport/Delete/{id}
+        public async Task<IActionResult> Delete(int? id)
         {
-            var report = await _context.DisasterReports.FindAsync(id);
-            if (report == null) return NotFound();
+            if (id == null)
+                return NotFound();
+
+            var report = await _context.DisasterReports
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (report == null)
+                return NotFound();
+
             return View(report);
         }
 
-        // ✅ Handle delete
+        // ✅ POST: /DisasterReport/DeleteConfirmed/{id}
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
@@ -101,6 +129,7 @@ namespace APPR_ST10278170_POE_PART_2.Controllers
                 _context.DisasterReports.Remove(report);
                 await _context.SaveChangesAsync();
             }
+
             return RedirectToAction(nameof(Index));
         }
     }
