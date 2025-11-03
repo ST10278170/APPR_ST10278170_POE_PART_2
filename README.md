@@ -1,4 +1,4 @@
-# APPR_ST10278170_POE_PART_2
+# APPR_ST10278170_POE_PART_3
 <img width="1492" height="507" alt="image" src="https://github.com/user-attachments/assets/35e681f0-391b-4db9-bf95-8c04d20ebd9f" />
 
 <img width="1492" height="690" alt="image" src="https://github.com/user-attachments/assets/70a25375-49e2-4627-855c-d07074678205" />
@@ -50,14 +50,6 @@ Azure Repos
 Azure Pipelines 
 
 References
-Anon., 2025. Azure.com. [Online] 
-Available at: https://dev.azure.com/ST102781700GiftoftheGiversWebApp/GiftoftheGiversWebApp/_build/results?buildId=3&view=results
-[Accessed 3 September 2025].
-Anon., 2025. Azure.com. [Online] 
-Available at: https://dev.azure.com/ST102781700GiftoftheGiversWebApp/GiftoftheGiversWebApp/_git/APPR_ST10278170_POE_PART_2
-[Accessed 3 September 2025].
-Anon., 2025. GitHub.com. [Online] 
-Available at: https://github.com/ST10278170/APPR_ST10278170_POE_PART_2
-[Accessed 3 September 2025].
+
 
 
