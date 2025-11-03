@@ -1,0 +1,15 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Target Name="EnsureChromeDriverInOutput" AfterTargets="Build">
+    <PropertyGroup>
+      <_ChromeDriverPackagePath>\.nuget\packages\selenium.webdriver.chromedriver\4.0.2.7.7AM.5980</_ChromeDriverPackagePath>
+      <_ChromeDriverSource>$(_ChromeDriverPackagePath)\driver\win32\chromedriver.exe</_ChromeDriverSource>
+    </PropertyGroup>
+
+    <Message Importance="high" Text="EnsureChromeDriver: Looking for " />
+    <Copy SourceFiles=""
+          DestinationFolder=""
+          SkipUnchangedFiles="true"
+          ContinueOnError="true"
+          Condition="Exists('')" />
+  </Target>
+</Project>
