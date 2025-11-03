@@ -15,11 +15,12 @@ namespace APPR_ST10278170_POE_PART_2.Models
         public string? Description { get; set; }
 
         [Display(Name = "Linked Disaster Report ID")]
-        public int? DisasterReportId { get; set; } // Optional linkage
+        public int? DisasterReportId { get; set; }
 
         [Display(Name = "Assigned Volunteer ID")]
-        public int? VolunteerId { get; set; } // Optional linkage
+        public int? VolunteerId { get; set; }
 
+        [Required(ErrorMessage = "Location is required.")]
         [Display(Name = "Location")]
         public required string Location { get; set; }
 
@@ -31,10 +32,12 @@ namespace APPR_ST10278170_POE_PART_2.Models
         [DataType(DataType.Date)]
         public DateTime EndDate { get; set; } = DateTime.UtcNow.AddDays(7);
 
+        [Required(ErrorMessage = "Status is required.")]
         [Display(Name = "Status")]
-        public required string Status { get; set; } // Planned, Active, Completed
+        public required string Status { get; set; }
 
-        [Display(Name = "Priority Level")]
-        public required string Priority { get; set; } // Low, Medium, High, Critical
+        [Required(ErrorMessage = "Priority is required.")]
+        [Display(Name = "Priority")]
+        public required string Priority { get; set; }
     }
 }

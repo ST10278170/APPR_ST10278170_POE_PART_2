@@ -1,0 +1,28 @@
+@page
+@model APPR_ST10278170_POE_PART_2.Pages.Volunteer.EditModel
+@{
+    ViewData["Title"] = "Edit Volunteer";
+}
+
+<h1>Edit Volunteer</h1>
+
+<form method="post" class="needs-validation" novalidate>
+    <input type="hidden" asp-for="Volunteer.Id" />
+
+    <div class="mb-3">
+        <label asp-for="Volunteer.FullName" class="form-label"></label>
+        <input asp-for="Volunteer.FullName" class="form-control" id="FullName" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Volunteer.Skills" class="form-label"></label>
+        <input asp-for="Volunteer.Skills" class="form-control" id="Skills" />
+    </div>
+
+    <div class="form-check mb-3">
+        <input asp-for="Volunteer.IsAssigned" class="form-check-input" id="IsAssigned" />
+        <label asp-for="Volunteer.IsAssigned" class="form-check-label"></label>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>

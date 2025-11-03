@@ -1,0 +1,13 @@
+﻿<PropertyGroup>
+	<_PackageRoot>$(NuGetPackageRoot)</_PackageRoot>
+</PropertyGroup>
+
+<Target Name="FindChromeDriverPath" BeforeTargets="EnsureChromeDriverInOutput">
+	<ItemGroup>
+		<_FoundPackageDirs Include="$(_PackageRoot)selenium.webdriver.chromedriver\*" />
+	</ItemGroup>
+	<PropertyGroup>
+		<_FoundPackageDir>$([System.Linq.Enumerable]::FirstOrDefault($(_FoundPackageDirs)))</_FoundPackageDir>
+		<_ChromeDriverSource>$([System.IO.Path]::Combine('$(_FoundPackageDir)','driver','win32','chromedriver.exe'))</_ChromeDriverSource>
+	</PropertyGroup>
+</Target>
